@@ -1,0 +1,448 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Xml;
+
+namespace WindowsFormsApplication4
+{
+    public partial class Form1 : Form
+    {
+        int n;
+        double[,] a, a1;
+        int[,] koord;
+        bool flag233 = true;
+
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void control() 
+        {
+            a = new double[n, n];
+            bool flag = true;
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                    try
+                    {
+                        a[i, j] = Convert.ToDouble(dataGridView1[j, i].Value);
+                    }
+                    catch
+                    {
+                        a[i, j] = 0;
+                        flag = false;
+                    }
+            if (flag == false)
+            {
+                MessageBox.Show("Введенное вами значение имеет некорректный формат");
+                return;
+            }
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            n = (int)numericUpDown1.Value;
+            dataGridView1.ColumnCount = n;
+            dataGridView1.RowCount = n;
+            dataGridView2.ColumnCount = n;
+            dataGridView2.RowCount = n;
+            for(int i = 0; i < n; i++)
+            {
+                dataGridView1[i, i].Style.BackColor = Color.Gray;
+                dataGridView1[i, i].Value = 0;
+                dataGridView2[i, i].Style.BackColor = Color.Gray;
+                dataGridView2[i, i].Value = 0;
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            progressBar1.Show();
+            numericUpDown1_ValueChanged(sender, e);
+            button2_Click(sender, e);
+            button1.Enabled = false;
+            построитьToolStripMenuItem.Enabled = false;
+            progressBar1.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            progressBar1.Show();
+            progressBar1.Maximum = n * n;
+            progressBar1.Value = 0;
+            Random x = new Random();
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                {
+                    progressBar1.Value++;
+                    if (i != j)
+                        dataGridView1[i, j].Value = x.Next(0, 20);
+               }
+            progressBar1.Value = progressBar1.Maximum;
+            progressBar1.Value = progressBar1.Minimum;
+            progressBar1.Hide();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            progressBar1.Show();
+            progressBar1.Value = 0;
+            progressBar1.Maximum = 2*n*n;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    progressBar1.Value++;
+                    if (i != j)
+                        dataGridView1[i, j].Value = null;
+                }
+            }
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    progressBar1.Value++;
+                    if (i != j)
+                        dataGridView2[i, j].Value = null;
+                }
+            }
+            pictureBox1.Refresh();
+            progressBar1.Value = 0;
+            pictureBox2.Refresh();
+            button1.Enabled = false;
+            progressBar1.Value = progressBar1.Maximum;
+            progressBar1.Hide();
+        }
+
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.ColumnIndex == e.RowIndex)
+                e.Cancel = true;
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            bool flag1 = true;
+            button1.Enabled = true;
+            try
+            {
+                Convert.ToDouble(dataGridView1[e.ColumnIndex, e.RowIndex].Value);
+                dataGridView1[e.ColumnIndex, e.RowIndex].Style.ForeColor = Color.Black;
+            }
+            catch
+            {
+                dataGridView1[e.ColumnIndex, e.RowIndex].Style.ForeColor = Color.Red;
+                toolStripStatusLabel1.Text = "Ошибка в красной ячейке (" + (e.RowIndex + 1) + "," + (e.ColumnIndex + 1) + ")";
+                flag1 = false;
+            }
+            if (flag1)
+                dataGridView1[e.RowIndex, e.ColumnIndex].Value = dataGridView1[e.ColumnIndex, e.RowIndex].Value;
+            flag233 = true;
+            построитьToolStripMenuItem.Enabled = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            progressBar1.Show();
+            progressBar1.Value = 0;
+            progressBar1.Maximum = n*n*n*n/2;
+            control();
+            if(flag233) 
+                button4_Click(sender, e);
+            a1 = new double[n, n]; //Матрица весов окончательной матрицы
+            int[,] b = new int[n, n]; //Массив компонент 
+            double[] c; //Массив ребер (вещественный)
+            progressBar1.Value++;
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n; j++)
+                    b[i, j] = -1;
+            progressBar1.Value++;
+            //Заполнение массива компонент (первая строка)
+            for(int i = 0; i < n; i++)
+	            b[0, i] = i;
+            progressBar1.Value++;
+            int re = 0;
+            //Проверка числа ребер
+            for(int i = 0; i < n; i++)
+            	for(int j = 0; j < i; j++)
+	                if(a[i, j] != 0)
+	            		re++;
+            c = new double[re];
+            re = 0;
+            progressBar1.Value++;
+            //Добавление ребер в массив ребер
+            for(int i = 0; i < n; i++)
+                for(int j = 0; j < i; j++)
+             		if(a[i, j] != 0)
+	               		{
+	            			c[re] = a[i, j];
+	            			re++;
+	            		}
+            progressBar1.Value++;
+            //Упорядочение массива ребер по возрастанию
+            double g; //Обменник (вещественная переменная)
+            int l;
+            while(true)
+    	        {
+	            l = 0;
+	            for(int i = 1; i < re; i++)
+		            {
+			            if(c[i] < c[i - 1])
+				            {
+					            g = c[i - 1];
+					            c[i - 1] = c[i];
+    					        c[i] = g;
+	    				        l++;
+		    		        }
+		            }
+    	        if(l == 0)
+	    	        break;
+	            }
+            progressBar1.Value++;
+            //Выполнение алгоритма
+            int com1 = 0, com2 = 0, n3;
+            bool flag = false;
+            for(int k = 0; k < re; k++)
+            {	//Поиск ребра в матрице весов
+	            for (int i = 0; i < n; i++)
+		        for (int j = 0; j < i; j++)
+                {
+                    progressBar1.Value++;
+                    if (c[k] == a[i, j] && c[k] != a1[i, j])
+                    {
+                            //Проверка вершин на принадлежность разным компонентам
+                        flag = false;
+                        for (int n1 = 0; n1 < n; n1++)
+                        {
+                            for (int n2 = 0; n2 < n; n2++)
+                                if (i == b[n1, n2])
+                                {
+                                    com1 = n2;
+                                    flag = true;
+                                }
+                            if (flag)
+                                break;
+                        }
+                        flag = false;
+                        for (int n1 = 0; n1 < n; n1++)
+                        {
+                            for (int n2 = 0; n2 < n; n2++)
+                                if (j == b[n1, n2])
+                                {
+                                    com2 = n2;
+                                    flag = true;
+                                }
+                            if (flag)
+                                break;
+                        }
+                        if (com1 != com2)
+                        {	//Добавление ребра в остовый лес
+                            a1[i, j] = c[k];
+                            a1[j, i] = c[k];
+                            //Обьединение двух соединенных компонент в одну
+                            n3 = 0;
+                            for (int t = 0; t < n; t++)
+                                if (b[t, com1] == -1)
+                                {
+                                    while (b[n3, com2] != -1)
+                                    {
+                                        b[n3 + t, com1] = b[n3, com2];
+                                        b[n3, com2] = -1;
+                                        n3++;
+                                    }
+                                    break;
+                                }
+                        }
+                    }
+                }     
+			//Изьятие использованного ребра из массива ребер        
+            c[k] = 0;
+        }
+        progressBar1.Value++;
+        //На выходе получаем матрицу остовного леса
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n; j++)
+            {
+                dataGridView2[i, j].Value = a1[i, j];
+                dataGridView2[j, i].Value = a1[i, j];
+            }
+        progressBar1.Value++;
+            //Изображение графа
+        Random z1 = new Random();
+        System.Drawing.Graphics formGraphics2 = pictureBox2.CreateGraphics();
+        System.Drawing.Pen myPen = new System.Drawing.Pen(System.Drawing.Color.Gray);
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < i; j++)
+                if (a1[i, j] != 0)
+                {
+                    formGraphics2.DrawLine(myPen, koord[0, i] + 5, koord[1, i] + 5, koord[0, j] + 5, koord[1, j] + 5);
+                }
+        progressBar1.Value++;
+        formGraphics2.Dispose();
+        myPen.Dispose();
+        progressBar1.Value = progressBar1.Maximum;
+        progressBar1.Value = progressBar1.Minimum;
+        progressBar1.Hide();
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void построитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button1_Click(sender, e);
+        }
+
+        private void слЧислаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button2_Click(sender, e);
+        }
+
+        private void сбросToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button3_Click(sender, e);
+        }
+
+        private void справкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Данная программа строит граф по алгоритму Краскала");
+        }
+
+        private void сохранитьГрафToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            progressBar1.Maximum = 2 * n * n;
+            progressBar1.Value = 0;
+            control();
+            SaveFileDialog s = new SaveFileDialog();
+            s.DefaultExt = ".xml";
+            s.Filter = "Граф в формате *.xml|*.xml";
+            if (s.ShowDialog() != DialogResult.OK) return;
+            XmlTextWriter w = new XmlTextWriter(s.FileName, null);
+            w.Formatting = Formatting.Indented;
+            w.WriteStartDocument();
+            w.WriteStartElement("Структура");
+            w.WriteStartElement("Неориентированный_граф");
+            w.WriteStartElement("Матрица_весов");
+            w.WriteAttributeString("Вершин", XmlConvert.ToString(n));
+            for (int i = 0; i < n; i++)
+            {
+                w.WriteStartElement("Строка_" + (i + 1));
+                for (int j = 0; j < n; j++)
+                {
+                    progressBar1.Value++;
+                    w.WriteAttributeString("Яч_" + (j + 1), XmlConvert.ToString(a[i, j]));
+                }
+                w.WriteEndElement();
+            }
+            w.WriteEndElement();
+            w.WriteEndElement();
+            w.WriteStartElement("Остовый_лес");
+            w.WriteStartElement("Матрица_весов");
+            w.WriteAttributeString("Вершин", XmlConvert.ToString(n));
+            for (int i = 0; i < n; i++)
+            {
+                w.WriteStartElement("Строка_" + (i + 1));
+                for (int j = 0; j < n; j++)
+                {
+                    progressBar1.Value++;
+                    w.WriteAttributeString("Яч_" + (j + 1), XmlConvert.ToString(a1[i, j]));
+                }
+                w.WriteEndElement();
+            }
+            w.WriteEndElement();
+            w.WriteEndElement();
+            w.WriteEndElement();
+            w.WriteEndDocument();
+            w.Close();
+            progressBar1.Value = progressBar1.Maximum;
+            progressBar1.Value = progressBar1.Minimum;
+            progressBar1.Hide();
+        }
+
+        private void загрузитьГрафToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            progressBar1.Show();
+            progressBar1.Maximum = 2 * n * n;
+            progressBar1.Value = 0;
+            OpenFileDialog o = new OpenFileDialog();
+            o.DefaultExt = ".xml";
+            o.Filter = "Граф в формате *.xml|*.xml";
+            if (o.ShowDialog() != DialogResult.OK) return;
+            XmlTextReader r = new XmlTextReader(o.FileName);
+            while (r.Read() && (r.Name != "Структура"));
+            while (r.Read() && (r.Name != "Неориентированный_граф"));
+            while (r.Read() && (r.Name != "Матрица_весов"));
+            numericUpDown1.Value = XmlConvert.ToInt32(r.GetAttribute("Вершин"));
+            for (int i = 0; i < n; i++)
+            {
+                while (r.Read() && (r.Name != "Строка_" + (i + 1))) ;
+                for (int j = 0; j < n; j++)
+                {
+                    progressBar1.Value++;
+                    dataGridView1[j, i].Value = XmlConvert.ToDouble(r.GetAttribute("Яч_" + (j + 1)));
+                }
+            }
+            while (r.Read() && (r.Name != "Остовый_лес")) ;
+            while (r.Read() && (r.Name != "Матрица_весов")) ;
+            numericUpDown1.Value = XmlConvert.ToInt32(r.GetAttribute("Вершин"));
+            for (int i = 0; i < n; i++)
+            {
+                while (r.Read() && (r.Name != "Строка_" + (i + 1))) ;
+                for (int j = 0; j < n; j++)
+                {
+                    progressBar1.Value++;
+                    dataGridView2[j, i].Value = XmlConvert.ToDouble(r.GetAttribute("Яч_" + (j + 1)));
+                }
+            }
+            progressBar1.Value = progressBar1.Maximum;
+            progressBar1.Value = progressBar1.Minimum;
+            progressBar1.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            control();
+            flag233 = false;
+            pictureBox1.Refresh();
+            pictureBox2.Refresh();
+            Random z1 = new Random();
+            koord = new int[2, n];
+            int x, y;
+            System.Drawing.Graphics formGraphics1 = pictureBox1.CreateGraphics();
+            System.Drawing.Graphics formGraphics2 = pictureBox2.CreateGraphics();
+            System.Drawing.Font drawfont = new System.Drawing.Font("Times New Roman", 16);
+            System.Drawing.SolidBrush myBrush = new System.Drawing.SolidBrush(System.Drawing.Color.Gray);
+            System.Drawing.Pen myPen = new System.Drawing.Pen(System.Drawing.Color.Gray);
+            for (int i = 0; i < n; i++)
+            {
+                x = z1.Next(20, pictureBox1.ClientSize.Width - 10);
+                y = z1.Next(20, pictureBox1.ClientSize.Height - 10);
+                formGraphics1.FillEllipse(myBrush, new System.Drawing.Rectangle(x, y, 10, 10));
+                formGraphics2.FillEllipse(myBrush, new System.Drawing.Rectangle(x, y, 10, 10));
+                koord[0, i] = x;
+                koord[1, i] = y;
+                formGraphics1.DrawString((i + 1).ToString(), drawfont, myBrush, x - 15, y - 15);
+                formGraphics2.DrawString((i + 1).ToString(), drawfont, myBrush, x - 15, y - 15);
+            }
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < i; j++)
+                    if (a[i, j] != 0) 
+                    {
+                        formGraphics1.DrawLine(myPen, koord[0, i] + 5, koord[1, i] + 5, koord[0, j] + 5, koord[1, j] + 5);
+                        //formGraphics1.DrawString(a[i, j].ToString(), drawfont, myBrush, (koord[0, i] + koord[0, j]) / 2, (koord[1, i] + koord[1, j]) / 2 - 20);
+                    }
+            drawfont.Dispose();
+            myBrush.Dispose();
+            formGraphics1.Dispose();
+            formGraphics2.Dispose();
+            myPen.Dispose();
+        }
+    }
+}

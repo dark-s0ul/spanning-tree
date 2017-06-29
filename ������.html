@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=Windows-1251" http-equiv="content-type">
+  <title>Теория</title>
+</head>
+<body>
+<small><span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Данная
+программа предназначена для построения остовного леса (или дерева)
+неориентированного взвешенного графа по </span><span style="text-decoration: underline; font-family: Arial;">алгоритму Краскала</span><span style="font-family: Arial;">. </span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Для начала немного определений, необходимых для понятия сути алгоритма.</span><span style="text-decoration: underline; font-family: Arial;"><br>
+</span><span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; </span><span style="text-decoration: underline; font-family: Arial;">Графом</span><span style="font-family: Arial;">
+называется конструкция, состоящая из точек (вершин) и соединяющих эти
+точку отрезков (ребер или дуг). Если заглянуть в учебник по дискретке,
+то можно найти там более "академичное" определение: </span><span style="text-decoration: underline; font-family: Arial;">графом</span><span style="font-family: Arial;">
+называется конструкция, состоящая из двух множеств V и Е, где V -
+множество вершин, а Е - множество пар этих вершин, называемых </span><span style="text-decoration: underline; font-family: Arial;">ребрами</span><span style="font-family: Arial;">, или </span><span style="text-decoration: underline; font-family: Arial;">дугами</span><span style="font-family: Arial;">. </span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Граф называется </span><span style="text-decoration: underline; font-family: Arial;">неориентированным</span><span style="font-family: Arial;">, если отрезки, соединяюшие вершины этого графа, не имеют направления, т. е. если множество Е этого графа состоит из </span><span style="font-weight: bold; font-family: Arial;">неупоряоченных </span><span style="font-family: Arial;">пар.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Две вершины u и v называются называются </span><span style="text-decoration: underline; font-family: Arial;">смежными</span><span style="font-family: Arial;">, если они соединены ребром u-v.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Граф называется </span><span style="text-decoration: underline; font-family: Arial;">взвешенным</span><span style="font-family: Arial;">, если каждому его ребру в соответствие поставлено некоторое действительное число, т. е. каждое ребро имеет свой вес.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; </span><span style="text-decoration: underline; font-family: Arial;">Компонентой</span><span style="font-family: Arial;">
+графа называется граф, входящий в состав данного графа, или
+максимальный связный подграф этого графа. Компонентой может быть
+вершина.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Граф называется </span><span style="text-decoration: underline; font-family: Arial;">связным</span><span style="font-family: Arial;">, если он состоит из одной компоненты, т. е. из любой его вершины можно попасть в другую.&nbsp;&nbsp;&nbsp; </span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Граф называется </span><span style="text-decoration: underline; font-family: Arial;">ациклическим,</span><span style="font-family: Arial;"> если он не имеет путей ненулевой длины с совпадающими концами.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Граф называется </span><span style="text-decoration: underline; font-family: Arial;">деревом</span><span style="font-family: Arial;">, если он связный и ациклический.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Остовным деревом
+(лесом) наименьшего веса графа называется подграф или набор подграфов,
+являющихся деревьями и имеющих наименьший вес.</span><br style="font-family: Arial;">
+<br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Существует много способов представления графов в памяти, но в нашей программе граф представляется в виде </span><span style="text-decoration: underline; font-family: Arial;">матрицы весов.</span><span style="font-family: Arial;">
+В матрице весов на пересечении i-й строки и j-го столбца стоит вес
+ребра, соединяющего i-ю и&nbsp; j-ю вершины. В случае если ребра не
+соединены друг с другом, в ячейке ставится ноль. По умолчанию, ячейки
+главной диагонали любой матрицы зануляются.</span><br style="font-family: Arial;">
+<br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Эта программа
+строит остовный лес для любого неориентированного графа по Алгоритму
+Краскала. Ниже размещено его формальное описание.</span><br style="font-family: Arial;">
+<br style="font-family: Arial;">
+<span style="font-family: Arial;">1. Множество ребер искомого остовного дерева полагаем пустым (H = null);</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">2. Формируем множество V = {{v1}, ...
+, {vn}}, элементами которого являются множества вершин, соответствующих
+компонентам искомого остовного леса. Каждая такая компонента состоит из
+единственной вершины;</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">3. Сортируем множество ребер Е исходного графа по возрастанию. Далее множество Е будет восприниматься нами как </span><span style="font-style: italic; font-family: Arial;">очередь</span><span style="font-family: Arial;">, т. е. в любой момент из этой очереди может быть извлечено только первое ребро (принцип "первым пришел - первым ушел");</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">4. Если множество Vs содержит более
+одного элемента (т. е. остовный лес состоит из нескольких компонент) и
+множество ребер Е не пусто, переходим на шаг </span><span style="font-weight: bold; font-family: Arial;">5</span><span style="font-family: Arial;">, в противном случае - на шаг </span><span style="font-weight: bold; font-family: Arial;">7</span><span style="font-family: Arial;">;</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">5. Извлекаем из очереди Е ребро е.
+Если концы этого ребра принадлежат разным элементам из множества V (т.
+е. разным компонентам), переходим к шагу </span><span style="font-weight: bold; font-family: Arial;">6</span><span style="font-family: Arial;">, иначе - отбрасываем извлеченное&nbsp;ребро и переходим к шагу </span><span style="font-weight: bold; font-family: Arial;">4</span><span style="font-family: Arial;">;</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">6. Обьединяем множества вершин Vi и
+Vj (т. е. обьединяем соединенные данным ребром компоненты в одну),
+после чего добавляем ребро е в множество Н. Возвращаемся на шаг </span><span style="font-weight: bold; font-family: Arial;">4</span><span style="font-family: Arial;">.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">7. Прекращаем работу. Множество Н является множеством ребер искомого остовного леса (дерева).</span><br style="font-family: Arial;">
+<br style="font-family: Arial;">
+<span style="font-family: Arial;">Доказательство я думаю не требуется :)</span></small>
+</body>
+</html>

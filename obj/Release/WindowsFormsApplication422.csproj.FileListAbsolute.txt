@@ -1,0 +1,27 @@
+D:\не открывать\WindowsFormsApplication422\WindowsFormsApplication422\bin\Release\WindowsFormsApplication422.exe
+D:\не открывать\WindowsFormsApplication422\WindowsFormsApplication422\bin\Release\WindowsFormsApplication422.pdb
+D:\не открывать\WindowsFormsApplication422\WindowsFormsApplication422\obj\Release\ResolveAssemblyReference.cache
+D:\не открывать\WindowsFormsApplication422\WindowsFormsApplication422\obj\Release\WindowsFormsApplication4.Form1.resources
+D:\не открывать\WindowsFormsApplication422\WindowsFormsApplication422\obj\Release\WindowsFormsApplication4.Properties.Resources.resources
+D:\не открывать\WindowsFormsApplication422\WindowsFormsApplication422\obj\Release\WindowsFormsApplication422.csproj.GenerateResource.Cache
+D:\не открывать\WindowsFormsApplication422\WindowsFormsApplication422\obj\Release\WindowsFormsApplication422.exe
+D:\не открывать\WindowsFormsApplication422\WindowsFormsApplication422\obj\Release\WindowsFormsApplication422.pdb
+C:\Documents and Settings\Администратор\Рабочий стол\WindowsFormsApplication422\WindowsFormsApplication422\bin\Release\WindowsFormsApplication422.exe
+C:\Documents and Settings\Администратор\Рабочий стол\WindowsFormsApplication422\WindowsFormsApplication422\bin\Release\WindowsFormsApplication422.pdb
+C:\Documents and Settings\Администратор\Рабочий стол\WindowsFormsApplication422\WindowsFormsApplication422\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Администратор\Рабочий стол\WindowsFormsApplication422\WindowsFormsApplication422\obj\Release\WindowsFormsApplication4.Form1.resources
+C:\Documents and Settings\Администратор\Рабочий стол\WindowsFormsApplication422\WindowsFormsApplication422\obj\Release\WindowsFormsApplication4.Properties.Resources.resources
+C:\Documents and Settings\Администратор\Рабочий стол\WindowsFormsApplication422\WindowsFormsApplication422\obj\Release\WindowsFormsApplication422.csproj.GenerateResource.Cache
+C:\Documents and Settings\Администратор\Рабочий стол\WindowsFormsApplication422\WindowsFormsApplication422\obj\Release\WindowsFormsApplication422.exe
+C:\Documents and Settings\Администратор\Рабочий стол\WindowsFormsApplication422\WindowsFormsApplication422\obj\Release\WindowsFormsApplication422.pdb
+D:\не открывать\Курсовик\WindowsFormsApplication4221\WindowsFormsApplication422\bin\Release\WindowsFormsApplication422.exe
+D:\не открывать\Курсовик\WindowsFormsApplication4221\WindowsFormsApplication422\bin\Release\WindowsFormsApplication422.pdb
+D:\не открывать\Курсовик\WindowsFormsApplication4221\WindowsFormsApplication422\obj\Release\ResolveAssemblyReference.cache
+D:\не открывать\Курсовик\WindowsFormsApplication4221\WindowsFormsApplication422\obj\Release\WindowsFormsApplication4.Form1.resources
+D:\не открывать\Курсовик\WindowsFormsApplication4221\WindowsFormsApplication422\obj\Release\WindowsFormsApplication4.Properties.Resources.resources
+D:\не открывать\Курсовик\WindowsFormsApplication4221\WindowsFormsApplication422\obj\Release\WindowsFormsApplication422.csproj.GenerateResource.Cache
+D:\не открывать\Курсовик\WindowsFormsApplication4221\WindowsFormsApplication422\obj\Release\WindowsFormsApplication422.exe
+D:\не открывать\Курсовик\WindowsFormsApplication4221\WindowsFormsApplication422\obj\Release\WindowsFormsApplication422.pdb
+D:\не открывать\Курсовик\WindowsFormsApplication4221\WindowsFormsApplication422\obj\Release\WindowsFormsApplication4.Form2.resources
+D:\не открывать\Курсовик\WindowsFormsApplication4221\WindowsFormsApplication422\bin\Release\TeeChart.Lite.dll
+D:\не открывать\Курсовик\WindowsFormsApplication4221\WindowsFormsApplication422\bin\Release\TeeChart.Lite.xml
