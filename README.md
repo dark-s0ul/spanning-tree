@@ -1,1 +1,1 @@
-# tree
+# Spanning tree
