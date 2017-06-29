@@ -2,60 +2,60 @@
 <html>
 <head>
   <meta content="text/html; charset=Windows-1251" http-equiv="content-type">
-  <title>Теория</title>
+  <title>Г’ГҐГ®Г°ГЁГї</title>
 </head>
 <body>
-<small><span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Данная
-программа предназначена для построения остовного леса (или дерева)
-неориентированного взвешенного графа по </span><span style="text-decoration: underline; font-family: Arial;">алгоритму Краскала</span><span style="font-family: Arial;">. </span><br style="font-family: Arial;">
-<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Для начала немного определений, необходимых для понятия сути алгоритма.</span><span style="text-decoration: underline; font-family: Arial;"><br>
-</span><span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; </span><span style="text-decoration: underline; font-family: Arial;">Графом</span><span style="font-family: Arial;">
-называется конструкция, состоящая из точек (вершин) и соединяющих эти
-точку отрезков (ребер или дуг). Если заглянуть в учебник по дискретке,
-то можно найти там более "академичное" определение: </span><span style="text-decoration: underline; font-family: Arial;">графом</span><span style="font-family: Arial;">
-называется конструкция, состоящая из двух множеств V и Е, где V -
-множество вершин, а Е - множество пар этих вершин, называемых </span><span style="text-decoration: underline; font-family: Arial;">ребрами</span><span style="font-family: Arial;">, или </span><span style="text-decoration: underline; font-family: Arial;">дугами</span><span style="font-family: Arial;">. </span><br style="font-family: Arial;">
-<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Граф называется </span><span style="text-decoration: underline; font-family: Arial;">неориентированным</span><span style="font-family: Arial;">, если отрезки, соединяюшие вершины этого графа, не имеют направления, т. е. если множество Е этого графа состоит из </span><span style="font-weight: bold; font-family: Arial;">неупоряоченных </span><span style="font-family: Arial;">пар.</span><br style="font-family: Arial;">
-<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Две вершины u и v называются называются </span><span style="text-decoration: underline; font-family: Arial;">смежными</span><span style="font-family: Arial;">, если они соединены ребром u-v.</span><br style="font-family: Arial;">
-<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Граф называется </span><span style="text-decoration: underline; font-family: Arial;">взвешенным</span><span style="font-family: Arial;">, если каждому его ребру в соответствие поставлено некоторое действительное число, т. е. каждое ребро имеет свой вес.</span><br style="font-family: Arial;">
-<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; </span><span style="text-decoration: underline; font-family: Arial;">Компонентой</span><span style="font-family: Arial;">
-графа называется граф, входящий в состав данного графа, или
-максимальный связный подграф этого графа. Компонентой может быть
-вершина.</span><br style="font-family: Arial;">
-<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Граф называется </span><span style="text-decoration: underline; font-family: Arial;">связным</span><span style="font-family: Arial;">, если он состоит из одной компоненты, т. е. из любой его вершины можно попасть в другую.&nbsp;&nbsp;&nbsp; </span><br style="font-family: Arial;">
-<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Граф называется </span><span style="text-decoration: underline; font-family: Arial;">ациклическим,</span><span style="font-family: Arial;"> если он не имеет путей ненулевой длины с совпадающими концами.</span><br style="font-family: Arial;">
-<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Граф называется </span><span style="text-decoration: underline; font-family: Arial;">деревом</span><span style="font-family: Arial;">, если он связный и ациклический.</span><br style="font-family: Arial;">
-<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Остовным деревом
-(лесом) наименьшего веса графа называется подграф или набор подграфов,
-являющихся деревьями и имеющих наименьший вес.</span><br style="font-family: Arial;">
+<small><span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Г„Г Г­Г­Г Гї
+ГЇГ°Г®ГЈГ°Г Г¬Г¬Г  ГЇГ°ГҐГ¤Г­Г Г§Г­Г Г·ГҐГ­Г  Г¤Г«Гї ГЇГ®Г±ГІГ°Г®ГҐГ­ГЁГї Г®Г±ГІГ®ГўГ­Г®ГЈГ® Г«ГҐГ±Г  (ГЁГ«ГЁ Г¤ГҐГ°ГҐГўГ )
+Г­ГҐГ®Г°ГЁГҐГ­ГІГЁГ°Г®ГўГ Г­Г­Г®ГЈГ® ГўГ§ГўГҐГёГҐГ­Г­Г®ГЈГ® ГЈГ°Г ГґГ  ГЇГ® </span><span style="text-decoration: underline; font-family: Arial;">Г Г«ГЈГ®Г°ГЁГІГ¬Гі ГЉГ°Г Г±ГЄГ Г«Г </span><span style="font-family: Arial;">. </span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Г„Г«Гї Г­Г Г·Г Г«Г  Г­ГҐГ¬Г­Г®ГЈГ® Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГ©, Г­ГҐГ®ГЎГµГ®Г¤ГЁГ¬Г»Гµ Г¤Г«Гї ГЇГ®Г­ГїГІГЁГї Г±ГіГІГЁ Г Г«ГЈГ®Г°ГЁГІГ¬Г .</span><span style="text-decoration: underline; font-family: Arial;"><br>
+</span><span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; </span><span style="text-decoration: underline; font-family: Arial;">ГѓГ°Г ГґГ®Г¬</span><span style="font-family: Arial;">
+Г­Г Г§Г»ГўГ ГҐГІГ±Гї ГЄГ®Г­Г±ГІГ°ГіГЄГ¶ГЁГї, Г±Г®Г±ГІГ®ГїГ№Г Гї ГЁГ§ ГІГ®Г·ГҐГЄ (ГўГҐГ°ГёГЁГ­) ГЁ Г±Г®ГҐГ¤ГЁГ­ГїГѕГ№ГЁГµ ГЅГІГЁ
+ГІГ®Г·ГЄГі Г®ГІГ°ГҐГ§ГЄГ®Гў (Г°ГҐГЎГҐГ° ГЁГ«ГЁ Г¤ГіГЈ). Г…Г±Г«ГЁ Г§Г ГЈГ«ГїГ­ГіГІГј Гў ГіГ·ГҐГЎГ­ГЁГЄ ГЇГ® Г¤ГЁГ±ГЄГ°ГҐГІГЄГҐ,
+ГІГ® Г¬Г®Г¦Г­Г® Г­Г Г©ГІГЁ ГІГ Г¬ ГЎГ®Г«ГҐГҐ "Г ГЄГ Г¤ГҐГ¬ГЁГ·Г­Г®ГҐ" Г®ГЇГ°ГҐГ¤ГҐГ«ГҐГ­ГЁГҐ: </span><span style="text-decoration: underline; font-family: Arial;">ГЈГ°Г ГґГ®Г¬</span><span style="font-family: Arial;">
+Г­Г Г§Г»ГўГ ГҐГІГ±Гї ГЄГ®Г­Г±ГІГ°ГіГЄГ¶ГЁГї, Г±Г®Г±ГІГ®ГїГ№Г Гї ГЁГ§ Г¤ГўГіГµ Г¬Г­Г®Г¦ГҐГ±ГІГў V ГЁ Г…, ГЈГ¤ГҐ V -
+Г¬Г­Г®Г¦ГҐГ±ГІГўГ® ГўГҐГ°ГёГЁГ­, Г  Г… - Г¬Г­Г®Г¦ГҐГ±ГІГўГ® ГЇГ Г° ГЅГІГЁГµ ГўГҐГ°ГёГЁГ­, Г­Г Г§Г»ГўГ ГҐГ¬Г»Гµ </span><span style="text-decoration: underline; font-family: Arial;">Г°ГҐГЎГ°Г Г¬ГЁ</span><span style="font-family: Arial;">, ГЁГ«ГЁ </span><span style="text-decoration: underline; font-family: Arial;">Г¤ГіГЈГ Г¬ГЁ</span><span style="font-family: Arial;">. </span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; ГѓГ°Г Гґ Г­Г Г§Г»ГўГ ГҐГІГ±Гї </span><span style="text-decoration: underline; font-family: Arial;">Г­ГҐГ®Г°ГЁГҐГ­ГІГЁГ°Г®ГўГ Г­Г­Г»Г¬</span><span style="font-family: Arial;">, ГҐГ±Г«ГЁ Г®ГІГ°ГҐГ§ГЄГЁ, Г±Г®ГҐГ¤ГЁГ­ГїГѕГёГЁГҐ ГўГҐГ°ГёГЁГ­Г» ГЅГІГ®ГЈГ® ГЈГ°Г ГґГ , Г­ГҐ ГЁГ¬ГҐГѕГІ Г­Г ГЇГ°Г ГўГ«ГҐГ­ГЁГї, ГІ. ГҐ. ГҐГ±Г«ГЁ Г¬Г­Г®Г¦ГҐГ±ГІГўГ® Г… ГЅГІГ®ГЈГ® ГЈГ°Г ГґГ  Г±Г®Г±ГІГ®ГЁГІ ГЁГ§ </span><span style="font-weight: bold; font-family: Arial;">Г­ГҐГіГЇГ®Г°ГїГ®Г·ГҐГ­Г­Г»Гµ </span><span style="font-family: Arial;">ГЇГ Г°.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Г„ГўГҐ ГўГҐГ°ГёГЁГ­Г» u ГЁ v Г­Г Г§Г»ГўГ ГѕГІГ±Гї Г­Г Г§Г»ГўГ ГѕГІГ±Гї </span><span style="text-decoration: underline; font-family: Arial;">Г±Г¬ГҐГ¦Г­Г»Г¬ГЁ</span><span style="font-family: Arial;">, ГҐГ±Г«ГЁ Г®Г­ГЁ Г±Г®ГҐГ¤ГЁГ­ГҐГ­Г» Г°ГҐГЎГ°Г®Г¬ u-v.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; ГѓГ°Г Гґ Г­Г Г§Г»ГўГ ГҐГІГ±Гї </span><span style="text-decoration: underline; font-family: Arial;">ГўГ§ГўГҐГёГҐГ­Г­Г»Г¬</span><span style="font-family: Arial;">, ГҐГ±Г«ГЁ ГЄГ Г¦Г¤Г®Г¬Гі ГҐГЈГ® Г°ГҐГЎГ°Гі Гў Г±Г®Г®ГІГўГҐГІГ±ГІГўГЁГҐ ГЇГ®Г±ГІГ ГўГ«ГҐГ­Г® Г­ГҐГЄГ®ГІГ®Г°Г®ГҐ Г¤ГҐГ©Г±ГІГўГЁГІГҐГ«ГјГ­Г®ГҐ Г·ГЁГ±Г«Г®, ГІ. ГҐ. ГЄГ Г¦Г¤Г®ГҐ Г°ГҐГЎГ°Г® ГЁГ¬ГҐГҐГІ Г±ГўГ®Г© ГўГҐГ±.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; </span><span style="text-decoration: underline; font-family: Arial;">ГЉГ®Г¬ГЇГ®Г­ГҐГ­ГІГ®Г©</span><span style="font-family: Arial;">
+ГЈГ°Г ГґГ  Г­Г Г§Г»ГўГ ГҐГІГ±Гї ГЈГ°Г Гґ, ГўГµГ®Г¤ГїГ№ГЁГ© Гў Г±Г®Г±ГІГ Гў Г¤Г Г­Г­Г®ГЈГ® ГЈГ°Г ГґГ , ГЁГ«ГЁ
+Г¬Г ГЄГ±ГЁГ¬Г Г«ГјГ­Г»Г© Г±ГўГїГ§Г­Г»Г© ГЇГ®Г¤ГЈГ°Г Гґ ГЅГІГ®ГЈГ® ГЈГ°Г ГґГ . ГЉГ®Г¬ГЇГ®Г­ГҐГ­ГІГ®Г© Г¬Г®Г¦ГҐГІ ГЎГ»ГІГј
+ГўГҐГ°ГёГЁГ­Г .</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; ГѓГ°Г Гґ Г­Г Г§Г»ГўГ ГҐГІГ±Гї </span><span style="text-decoration: underline; font-family: Arial;">Г±ГўГїГ§Г­Г»Г¬</span><span style="font-family: Arial;">, ГҐГ±Г«ГЁ Г®Г­ Г±Г®Г±ГІГ®ГЁГІ ГЁГ§ Г®Г¤Г­Г®Г© ГЄГ®Г¬ГЇГ®Г­ГҐГ­ГІГ», ГІ. ГҐ. ГЁГ§ Г«ГѕГЎГ®Г© ГҐГЈГ® ГўГҐГ°ГёГЁГ­Г» Г¬Г®Г¦Г­Г® ГЇГ®ГЇГ Г±ГІГј Гў Г¤Г°ГіГЈГіГѕ.&nbsp;&nbsp;&nbsp; </span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; ГѓГ°Г Гґ Г­Г Г§Г»ГўГ ГҐГІГ±Гї </span><span style="text-decoration: underline; font-family: Arial;">Г Г¶ГЁГЄГ«ГЁГ·ГҐГ±ГЄГЁГ¬,</span><span style="font-family: Arial;"> ГҐГ±Г«ГЁ Г®Г­ Г­ГҐ ГЁГ¬ГҐГҐГІ ГЇГіГІГҐГ© Г­ГҐГ­ГіГ«ГҐГўГ®Г© Г¤Г«ГЁГ­Г» Г± Г±Г®ГўГЇГ Г¤Г ГѕГ№ГЁГ¬ГЁ ГЄГ®Г­Г¶Г Г¬ГЁ.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; ГѓГ°Г Гґ Г­Г Г§Г»ГўГ ГҐГІГ±Гї </span><span style="text-decoration: underline; font-family: Arial;">Г¤ГҐГ°ГҐГўГ®Г¬</span><span style="font-family: Arial;">, ГҐГ±Г«ГЁ Г®Г­ Г±ГўГїГ§Г­Г»Г© ГЁ Г Г¶ГЁГЄГ«ГЁГ·ГҐГ±ГЄГЁГ©.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; ГЋГ±ГІГ®ГўГ­Г»Г¬ Г¤ГҐГ°ГҐГўГ®Г¬
+(Г«ГҐГ±Г®Г¬) Г­Г ГЁГ¬ГҐГ­ГјГёГҐГЈГ® ГўГҐГ±Г  ГЈГ°Г ГґГ  Г­Г Г§Г»ГўГ ГҐГІГ±Гї ГЇГ®Г¤ГЈГ°Г Гґ ГЁГ«ГЁ Г­Г ГЎГ®Г° ГЇГ®Г¤ГЈГ°Г ГґГ®Гў,
+ГїГўГ«ГїГѕГ№ГЁГµГ±Гї Г¤ГҐГ°ГҐГўГјГїГ¬ГЁ ГЁ ГЁГ¬ГҐГѕГ№ГЁГµ Г­Г ГЁГ¬ГҐГ­ГјГёГЁГ© ГўГҐГ±.</span><br style="font-family: Arial;">
 <br style="font-family: Arial;">
-<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Существует много способов представления графов в памяти, но в нашей программе граф представляется в виде </span><span style="text-decoration: underline; font-family: Arial;">матрицы весов.</span><span style="font-family: Arial;">
-В матрице весов на пересечении i-й строки и j-го столбца стоит вес
-ребра, соединяющего i-ю и&nbsp; j-ю вершины. В случае если ребра не
-соединены друг с другом, в ячейке ставится ноль. По умолчанию, ячейки
-главной диагонали любой матрицы зануляются.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Г‘ГіГ№ГҐГ±ГІГўГіГҐГІ Г¬Г­Г®ГЈГ® Г±ГЇГ®Г±Г®ГЎГ®Гў ГЇГ°ГҐГ¤Г±ГІГ ГўГ«ГҐГ­ГЁГї ГЈГ°Г ГґГ®Гў Гў ГЇГ Г¬ГїГІГЁ, Г­Г® Гў Г­Г ГёГҐГ© ГЇГ°Г®ГЈГ°Г Г¬Г¬ГҐ ГЈГ°Г Гґ ГЇГ°ГҐГ¤Г±ГІГ ГўГ«ГїГҐГІГ±Гї Гў ГўГЁГ¤ГҐ </span><span style="text-decoration: underline; font-family: Arial;">Г¬Г ГІГ°ГЁГ¶Г» ГўГҐГ±Г®Гў.</span><span style="font-family: Arial;">
+Г‚ Г¬Г ГІГ°ГЁГ¶ГҐ ГўГҐГ±Г®Гў Г­Г  ГЇГҐГ°ГҐГ±ГҐГ·ГҐГ­ГЁГЁ i-Г© Г±ГІГ°Г®ГЄГЁ ГЁ j-ГЈГ® Г±ГІГ®Г«ГЎГ¶Г  Г±ГІГ®ГЁГІ ГўГҐГ±
+Г°ГҐГЎГ°Г , Г±Г®ГҐГ¤ГЁГ­ГїГѕГ№ГҐГЈГ® i-Гѕ ГЁ&nbsp; j-Гѕ ГўГҐГ°ГёГЁГ­Г». Г‚ Г±Г«ГіГ·Г ГҐ ГҐГ±Г«ГЁ Г°ГҐГЎГ°Г  Г­ГҐ
+Г±Г®ГҐГ¤ГЁГ­ГҐГ­Г» Г¤Г°ГіГЈ Г± Г¤Г°ГіГЈГ®Г¬, Гў ГїГ·ГҐГ©ГЄГҐ Г±ГІГ ГўГЁГІГ±Гї Г­Г®Г«Гј. ГЏГ® ГіГ¬Г®Г«Г·Г Г­ГЁГѕ, ГїГ·ГҐГ©ГЄГЁ
+ГЈГ«Г ГўГ­Г®Г© Г¤ГЁГ ГЈГ®Г­Г Г«ГЁ Г«ГѕГЎГ®Г© Г¬Г ГІГ°ГЁГ¶Г» Г§Г Г­ГіГ«ГїГѕГІГ±Гї.</span><br style="font-family: Arial;">
 <br style="font-family: Arial;">
-<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; Эта программа
-строит остовный лес для любого неориентированного графа по Алгоритму
-Краскала. Ниже размещено его формальное описание.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">&nbsp;&nbsp;&nbsp; ГќГІГ  ГЇГ°Г®ГЈГ°Г Г¬Г¬Г 
+Г±ГІГ°Г®ГЁГІ Г®Г±ГІГ®ГўГ­Г»Г© Г«ГҐГ± Г¤Г«Гї Г«ГѕГЎГ®ГЈГ® Г­ГҐГ®Г°ГЁГҐГ­ГІГЁГ°Г®ГўГ Г­Г­Г®ГЈГ® ГЈГ°Г ГґГ  ГЇГ® ГЂГ«ГЈГ®Г°ГЁГІГ¬Гі
+ГЉГ°Г Г±ГЄГ Г«Г . ГЌГЁГ¦ГҐ Г°Г Г§Г¬ГҐГ№ГҐГ­Г® ГҐГЈГ® ГґГ®Г°Г¬Г Г«ГјГ­Г®ГҐ Г®ГЇГЁГ±Г Г­ГЁГҐ.</span><br style="font-family: Arial;">
 <br style="font-family: Arial;">
-<span style="font-family: Arial;">1. Множество ребер искомого остовного дерева полагаем пустым (H = null);</span><br style="font-family: Arial;">
-<span style="font-family: Arial;">2. Формируем множество V = {{v1}, ...
-, {vn}}, элементами которого являются множества вершин, соответствующих
-компонентам искомого остовного леса. Каждая такая компонента состоит из
-единственной вершины;</span><br style="font-family: Arial;">
-<span style="font-family: Arial;">3. Сортируем множество ребер Е исходного графа по возрастанию. Далее множество Е будет восприниматься нами как </span><span style="font-style: italic; font-family: Arial;">очередь</span><span style="font-family: Arial;">, т. е. в любой момент из этой очереди может быть извлечено только первое ребро (принцип "первым пришел - первым ушел");</span><br style="font-family: Arial;">
-<span style="font-family: Arial;">4. Если множество Vs содержит более
-одного элемента (т. е. остовный лес состоит из нескольких компонент) и
-множество ребер Е не пусто, переходим на шаг </span><span style="font-weight: bold; font-family: Arial;">5</span><span style="font-family: Arial;">, в противном случае - на шаг </span><span style="font-weight: bold; font-family: Arial;">7</span><span style="font-family: Arial;">;</span><br style="font-family: Arial;">
-<span style="font-family: Arial;">5. Извлекаем из очереди Е ребро е.
-Если концы этого ребра принадлежат разным элементам из множества V (т.
-е. разным компонентам), переходим к шагу </span><span style="font-weight: bold; font-family: Arial;">6</span><span style="font-family: Arial;">, иначе - отбрасываем извлеченное&nbsp;ребро и переходим к шагу </span><span style="font-weight: bold; font-family: Arial;">4</span><span style="font-family: Arial;">;</span><br style="font-family: Arial;">
-<span style="font-family: Arial;">6. Обьединяем множества вершин Vi и
-Vj (т. е. обьединяем соединенные данным ребром компоненты в одну),
-после чего добавляем ребро е в множество Н. Возвращаемся на шаг </span><span style="font-weight: bold; font-family: Arial;">4</span><span style="font-family: Arial;">.</span><br style="font-family: Arial;">
-<span style="font-family: Arial;">7. Прекращаем работу. Множество Н является множеством ребер искомого остовного леса (дерева).</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">1. ГЊГ­Г®Г¦ГҐГ±ГІГўГ® Г°ГҐГЎГҐГ° ГЁГ±ГЄГ®Г¬Г®ГЈГ® Г®Г±ГІГ®ГўГ­Г®ГЈГ® Г¤ГҐГ°ГҐГўГ  ГЇГ®Г«Г ГЈГ ГҐГ¬ ГЇГіГ±ГІГ»Г¬ (H = null);</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">2. Г”Г®Г°Г¬ГЁГ°ГіГҐГ¬ Г¬Г­Г®Г¦ГҐГ±ГІГўГ® V = {{v1}, ...
+, {vn}}, ГЅГ«ГҐГ¬ГҐГ­ГІГ Г¬ГЁ ГЄГ®ГІГ®Г°Г®ГЈГ® ГїГўГ«ГїГѕГІГ±Гї Г¬Г­Г®Г¦ГҐГ±ГІГўГ  ГўГҐГ°ГёГЁГ­, Г±Г®Г®ГІГўГҐГІГ±ГІГўГіГѕГ№ГЁГµ
+ГЄГ®Г¬ГЇГ®Г­ГҐГ­ГІГ Г¬ ГЁГ±ГЄГ®Г¬Г®ГЈГ® Г®Г±ГІГ®ГўГ­Г®ГЈГ® Г«ГҐГ±Г . ГЉГ Г¦Г¤Г Гї ГІГ ГЄГ Гї ГЄГ®Г¬ГЇГ®Г­ГҐГ­ГІГ  Г±Г®Г±ГІГ®ГЁГІ ГЁГ§
+ГҐГ¤ГЁГ­Г±ГІГўГҐГ­Г­Г®Г© ГўГҐГ°ГёГЁГ­Г»;</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">3. Г‘Г®Г°ГІГЁГ°ГіГҐГ¬ Г¬Г­Г®Г¦ГҐГ±ГІГўГ® Г°ГҐГЎГҐГ° Г… ГЁГ±ГµГ®Г¤Г­Г®ГЈГ® ГЈГ°Г ГґГ  ГЇГ® ГўГ®Г§Г°Г Г±ГІГ Г­ГЁГѕ. Г„Г Г«ГҐГҐ Г¬Г­Г®Г¦ГҐГ±ГІГўГ® Г… ГЎГіГ¤ГҐГІ ГўГ®Г±ГЇГ°ГЁГ­ГЁГ¬Г ГІГјГ±Гї Г­Г Г¬ГЁ ГЄГ ГЄ </span><span style="font-style: italic; font-family: Arial;">Г®Г·ГҐГ°ГҐГ¤Гј</span><span style="font-family: Arial;">, ГІ. ГҐ. Гў Г«ГѕГЎГ®Г© Г¬Г®Г¬ГҐГ­ГІ ГЁГ§ ГЅГІГ®Г© Г®Г·ГҐГ°ГҐГ¤ГЁ Г¬Г®Г¦ГҐГІ ГЎГ»ГІГј ГЁГ§ГўГ«ГҐГ·ГҐГ­Г® ГІГ®Г«ГјГЄГ® ГЇГҐГ°ГўГ®ГҐ Г°ГҐГЎГ°Г® (ГЇГ°ГЁГ­Г¶ГЁГЇ "ГЇГҐГ°ГўГ»Г¬ ГЇГ°ГЁГёГҐГ« - ГЇГҐГ°ГўГ»Г¬ ГіГёГҐГ«");</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">4. Г…Г±Г«ГЁ Г¬Г­Г®Г¦ГҐГ±ГІГўГ® Vs Г±Г®Г¤ГҐГ°Г¦ГЁГІ ГЎГ®Г«ГҐГҐ
+Г®Г¤Г­Г®ГЈГ® ГЅГ«ГҐГ¬ГҐГ­ГІГ  (ГІ. ГҐ. Г®Г±ГІГ®ГўГ­Г»Г© Г«ГҐГ± Г±Г®Г±ГІГ®ГЁГІ ГЁГ§ Г­ГҐГ±ГЄГ®Г«ГјГЄГЁГµ ГЄГ®Г¬ГЇГ®Г­ГҐГ­ГІ) ГЁ
+Г¬Г­Г®Г¦ГҐГ±ГІГўГ® Г°ГҐГЎГҐГ° Г… Г­ГҐ ГЇГіГ±ГІГ®, ГЇГҐГ°ГҐГµГ®Г¤ГЁГ¬ Г­Г  ГёГ ГЈ </span><span style="font-weight: bold; font-family: Arial;">5</span><span style="font-family: Arial;">, Гў ГЇГ°Г®ГІГЁГўГ­Г®Г¬ Г±Г«ГіГ·Г ГҐ - Г­Г  ГёГ ГЈ </span><span style="font-weight: bold; font-family: Arial;">7</span><span style="font-family: Arial;">;</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">5. Г€Г§ГўГ«ГҐГЄГ ГҐГ¬ ГЁГ§ Г®Г·ГҐГ°ГҐГ¤ГЁ Г… Г°ГҐГЎГ°Г® ГҐ.
+Г…Г±Г«ГЁ ГЄГ®Г­Г¶Г» ГЅГІГ®ГЈГ® Г°ГҐГЎГ°Г  ГЇГ°ГЁГ­Г Г¤Г«ГҐГ¦Г ГІ Г°Г Г§Г­Г»Г¬ ГЅГ«ГҐГ¬ГҐГ­ГІГ Г¬ ГЁГ§ Г¬Г­Г®Г¦ГҐГ±ГІГўГ  V (ГІ.
+ГҐ. Г°Г Г§Г­Г»Г¬ ГЄГ®Г¬ГЇГ®Г­ГҐГ­ГІГ Г¬), ГЇГҐГ°ГҐГµГ®Г¤ГЁГ¬ ГЄ ГёГ ГЈГі </span><span style="font-weight: bold; font-family: Arial;">6</span><span style="font-family: Arial;">, ГЁГ­Г Г·ГҐ - Г®ГІГЎГ°Г Г±Г»ГўГ ГҐГ¬ ГЁГ§ГўГ«ГҐГ·ГҐГ­Г­Г®ГҐ&nbsp;Г°ГҐГЎГ°Г® ГЁ ГЇГҐГ°ГҐГµГ®Г¤ГЁГ¬ ГЄ ГёГ ГЈГі </span><span style="font-weight: bold; font-family: Arial;">4</span><span style="font-family: Arial;">;</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">6. ГЋГЎГјГҐГ¤ГЁГ­ГїГҐГ¬ Г¬Г­Г®Г¦ГҐГ±ГІГўГ  ГўГҐГ°ГёГЁГ­ Vi ГЁ
+Vj (ГІ. ГҐ. Г®ГЎГјГҐГ¤ГЁГ­ГїГҐГ¬ Г±Г®ГҐГ¤ГЁГ­ГҐГ­Г­Г»ГҐ Г¤Г Г­Г­Г»Г¬ Г°ГҐГЎГ°Г®Г¬ ГЄГ®Г¬ГЇГ®Г­ГҐГ­ГІГ» Гў Г®Г¤Г­Гі),
+ГЇГ®Г±Г«ГҐ Г·ГҐГЈГ® Г¤Г®ГЎГ ГўГ«ГїГҐГ¬ Г°ГҐГЎГ°Г® ГҐ Гў Г¬Г­Г®Г¦ГҐГ±ГІГўГ® ГЌ. Г‚Г®Г§ГўГ°Г Г№Г ГҐГ¬Г±Гї Г­Г  ГёГ ГЈ </span><span style="font-weight: bold; font-family: Arial;">4</span><span style="font-family: Arial;">.</span><br style="font-family: Arial;">
+<span style="font-family: Arial;">7. ГЏГ°ГҐГЄГ°Г Г№Г ГҐГ¬ Г°Г ГЎГ®ГІГі. ГЊГ­Г®Г¦ГҐГ±ГІГўГ® ГЌ ГїГўГ«ГїГҐГІГ±Гї Г¬Г­Г®Г¦ГҐГ±ГІГўГ®Г¬ Г°ГҐГЎГҐГ° ГЁГ±ГЄГ®Г¬Г®ГЈГ® Г®Г±ГІГ®ГўГ­Г®ГЈГ® Г«ГҐГ±Г  (Г¤ГҐГ°ГҐГўГ ).</span><br style="font-family: Arial;">
 <br style="font-family: Arial;">
-<span style="font-family: Arial;">Доказательство я думаю не требуется :)</span></small>
-</body>
+<span style="font-family: Arial;">Г„Г®ГЄГ Г§Г ГІГҐГ«ГјГ±ГІГўГ® Гї Г¤ГіГ¬Г Гѕ Г­ГҐ ГІГ°ГҐГЎГіГҐГІГ±Гї :)</span></small>
+</body> 
 </html>
